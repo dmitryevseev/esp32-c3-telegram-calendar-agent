@@ -1,0 +1,11 @@
+# PlatformIO
+firmware/.pio/
+
+# Credentials — copy from config.h.example and fill in locally
+firmware/include/config.h
+
+# IDE
+.idea/
+
+# macOS
+.DS_Store

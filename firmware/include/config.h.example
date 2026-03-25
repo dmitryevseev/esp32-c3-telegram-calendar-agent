@@ -1,0 +1,87 @@
+#pragma once
+
+// =============================================================================
+// User configuration — fill in before flashing
+// =============================================================================
+
+// WiFi credentials
+#define WIFI_SSID     "Your_WiFi_Name"
+#define WIFI_PASSWORD "your_wifi_password"
+
+// Telegram Bot token (from @BotFather)
+#define TELEGRAM_BOT_TOKEN "1234567890:AAxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+
+// Telegram: comma-separated list of allowed user IDs (get yours from @userinfobot)
+// Example: "123456789,987654321"
+#define TELEGRAM_ALLOWED_USERS "123456789"
+
+// =============================================================================
+// Apple CalDAV (iCloud Calendar)
+// =============================================================================
+
+// Your Apple ID email address
+#define CALDAV_APPLE_ID     "your_apple_id@icloud.com"
+
+// App-specific password — generate at: appleid.apple.com → Sign-In & Security → App-Specific Passwords
+// Format: xxxx-xxxx-xxxx-xxxx
+#define CALDAV_APP_PASSWORD "xxxx-xxxx-xxxx-xxxx"
+
+// Full CalDAV URL for your calendar.
+// How to find it:
+//   Option A (curl): run the helper script at tools/find_caldav_url.sh
+//   Option B (macOS): Calendar.app → account settings → show URL in proxy/network logs
+//   Option C (manual): it looks like https://pXX-caldav.icloud.com/DSNUMBER/calendars/home/
+// Must end with a trailing slash.
+#define CALDAV_CALENDAR_URL "https://pXX-caldav.icloud.com/YOUR_DS_NUMBER/calendars/YOUR_CALENDAR_UUID/"
+
+// Timezone offset from UTC in seconds (e.g. UTC+1 = 1*3600 = 3600)
+#define TIMEZONE_OFFSET_SEC (1 * 3600)
+
+// =============================================================================
+// Hardware configuration
+// =============================================================================
+
+// Onboard LED pin on ESP32-C3-DevKitM-1 (GPIO8 = RGB LED, GPIO2 = plain LED)
+// Set to -1 to disable LED status indicator
+#define STATUS_LED_PIN 8
+
+// LED meanings:
+//   Fast blink (200ms): connecting to WiFi
+//   Slow blink (1000ms): WiFi connected, polling Telegram
+//   Solid on: processing a message
+//   Off: error / restarting
+
+// =============================================================================
+// Tuning — safe to leave as-is
+// =============================================================================
+
+// Telegram poll interval when no messages (ms)
+#define TELEGRAM_POLL_INTERVAL_MS 3000
+
+// Telegram long-poll timeout (seconds). Server holds the connection open this
+// long before returning an empty update list.
+#define TELEGRAM_LONG_POLL_TIMEOUT 0   // 0 = short poll for Phase 1 simplicity
+
+// Minimum free heap before triggering a watchdog reboot (bytes)
+#define HEAP_REBOOT_THRESHOLD 20000
+
+// WiFi reconnection: initial delay (ms), doubles each attempt up to max
+#define WIFI_RECONNECT_INITIAL_DELAY_MS  1000
+#define WIFI_RECONNECT_MAX_DELAY_MS     30000
+
+// =============================================================================
+// Claude AI — natural language understanding for plain-text messages
+// =============================================================================
+
+// Set to 1 to route plain-text messages through the Claude API.
+// Set to 0 for slash-command-only mode (no API calls, no API key needed).
+#define LLM_ENABLED 1
+
+// API key from console.anthropic.com → API keys
+#define CLAUDE_API_KEY "sk-ant-api03-REPLACE_ME"
+
+// Model to use. Haiku 4.5 is fast and cost-effective for structured extraction.
+#define CLAUDE_MODEL "claude-haiku-4-5-20251001"
+
+// Maximum time (ms) to wait for a response from the Claude API.
+#define CLAUDE_API_TIMEOUT_MS 30000
